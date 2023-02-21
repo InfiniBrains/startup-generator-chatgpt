@@ -1,20 +1,20 @@
 FROM node:lts AS dist
 COPY package.json yarn.lock ./
 
-RUN yarn install
+RUN npm install
 
 COPY . ./
 
-RUN yarn build:prod
+RUN npm run build:prod
 
 FROM node:lts AS node_modules
-COPY package.json yarn.lock ./
+COPY package.json ./
 
-RUN yarn install --prod
+RUN npm install
 
 FROM node:lts
 
-ARG PORT=3000
+ARG PORT=8080
 
 RUN mkdir -p /usr/src/app
 
@@ -27,4 +27,4 @@ COPY . /usr/src/app
 
 EXPOSE $PORT
 
-CMD [ "yarn", "start:prod" ]
+CMD [ "npm", "run", "start:prod" ]

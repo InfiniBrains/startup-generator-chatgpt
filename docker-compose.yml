@@ -7,7 +7,7 @@ services:
     restart: always
     build: .
     ports:
-      - "$PORT:$PORT"
+      - "8080:8080"
     links:
       - postgres
   postgres:
@@ -25,16 +25,16 @@ services:
       - ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
     env_file:
       - .env
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
+  adminer:
+    container_name: adminer
+    image: adminer
     ports:
-      - "8080:80"
-    volumes:
-      - /data/pgadmin:/root/.pgadmin
+      - "8082:8080"
     env_file:
       - .env
     links:
+      - postgres
+    depends_on:
       - postgres
 
 volumes:

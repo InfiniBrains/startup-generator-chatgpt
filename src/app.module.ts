@@ -12,6 +12,7 @@ import { PostModule } from './modules/post/post.module';
 import { UserModule } from './modules/user/user.module';
 import { ApiConfigService } from './shared/services/api-config.service';
 import { SharedModule } from './shared/shared.module';
+import {OpenAiModule} from "./modules/openai/openai.module";
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { SharedModule } from './shared/shared.module';
       inject: [ApiConfigService],
     }),
     HealthCheckerModule,
+    OpenAiModule,
   ],
   providers: [],
 })

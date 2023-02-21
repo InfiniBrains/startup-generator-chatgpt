@@ -145,7 +145,7 @@ export class ApiConfigService {
     };
   }
 
-  private get(key: string): string {
+  public get(key: string): string {
     const value = this.configService.get<string>(key);
 
     if (isNil(value)) {
